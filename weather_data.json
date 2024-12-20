@@ -1,0 +1,15 @@
+{
+    "cities": [
+      {"city": "Москва", "temperature": -5},
+      {"city": "Санкт-Петербург", "temperature": -2},
+      {"city": "Новосибирск", "temperature": -10},
+      {"city": "Екатеринбург", "temperature": -7},
+      {"city": "Казань", "temperature": -6},
+      {"city": "Нижний Новгород", "temperature": -4},
+      {"city": "Челябинск", "temperature": -8},
+      {"city": "Самара", "temperature": -3},
+      {"city": "Омск", "temperature": -12},
+      {"city": "Ростов-на-Дону", "temperature": 0},
+      {"city": "Уфа", "temperature": 2}
+    ]
+  }

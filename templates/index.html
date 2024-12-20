@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <h1>Погода в топ-10 городах России по населению</h1>
+    <select id="citySelect">
+        {% for city in cities %}
+            <option value="{{ city }}">{{ city }}</option>
+        {% endfor %}
+    </select>
+    <button onclick="getWeather()">Узнать погоду</button>
+    <div id="weatherInfo"></div>
+    <!--- <div id="limiter_error">тут должна быть ошибка превышения запросов</div> --->
+
+    <script>
+        async function getWeather() {
+            const city = document.getElementById("citySelect").value;
+            const response = await fetch(`/weather/${city}`);
+            try {
+                const data = await response.json();
+                switch(response.status) {
+                    case 200:
+                        document.getElementById("weatherInfo").innerText = `Температура в ${data.city}: ${data.temperature}°C`;
+                        break;
+                    case 404:
+                        document.getElementById("weatherInfo").innerText = data.error;
+                        break;
+                    case 429:
+                        var d = new Date(data.next_response * 1000);
+                        var next_ymd = d.toLocaleDateString();
+                        var next_hms = d.toLocaleTimeString();
+                        alert('Превышено количество запросов, попробуйте в ' + next_ymd + ' ' + next_hms);
+                        break;
+                }
+            } catch (e) {
+                console.log(e);
+                alert('Произошла неизвестная ошибка, подробности в консоли!');
+            }
+        }
+    </script>
+</body>
+</html>
